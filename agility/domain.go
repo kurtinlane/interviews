@@ -1,6 +1,5 @@
 package main
 
-// Character represents a Star Wars character.
 type Character struct {
 	Name      string     `json:"name,omitempty"`
 	Height    string     `json:"height,omitempty"`

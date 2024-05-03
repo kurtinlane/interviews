@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"sort"
 	"strings"
 )
 
@@ -118,6 +119,10 @@ func getCharacter(name string) ([]Character, error) {
 		}
 
 	}
+
+	//sort the characters by name
+	sort.Sort(ByName(characters))
+
 	return characters, nil
 }
 
@@ -171,3 +176,10 @@ func getHomeworld(url string) (Homeworld, error) {
 
 	return v, nil
 }
+
+// Sort stuff
+type ByName []Character
+
+func (a ByName) Len() int           { return len(a) }
+func (a ByName) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a ByName) Less(i, j int) bool { return a[i].Name < a[j].Name }
